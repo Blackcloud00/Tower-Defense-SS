@@ -4345,10 +4345,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 921e30ab64bb05645a0efc195cf45f62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnCooldown: 5
-  spawnTimer: 0
+  currentWave:
+    basicEnemy: 10
+    fastEnemy: 4
   respawn: {fileID: 255917499863932106}
+  spawnCooldown: 1
   basicEnemy: {fileID: 2219364534099601096, guid: eae3862880d7fa14e849b66dfbe9a301,
+    type: 3}
+  fastEnemy: {fileID: 8774842038689757967, guid: eb783b94eddd98e4c9c5e5c270d5e5d4,
     type: 3}
 --- !u!4 &2138674429
 Transform:
