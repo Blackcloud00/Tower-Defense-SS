@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,6 +10,7 @@ public class WaveDetails
 public class EnemyManager : MonoBehaviour
 {
     [SerializeField] private WaveDetails currentWave;
+    [Space]
     [SerializeField] private Transform respawn;
     [SerializeField] private float spawnCooldown;
     private float spawnTimer;
@@ -29,7 +29,7 @@ public class EnemyManager : MonoBehaviour
     {
         spawnTimer -= Time.deltaTime;
 
-        if(spawnTimer <= 0 && enemiesToCreate.Count > 0)
+        if (spawnTimer <= 0 && enemiesToCreate.Count > 0)
         {
             CreateEnemy();
             spawnTimer = spawnCooldown;
@@ -55,7 +55,7 @@ public class EnemyManager : MonoBehaviour
     {
         List<GameObject> newEnemyList = new List<GameObject>();
 
-        for(int i = 0; i < currentWave.basicEnemy; i++)
+        for (int i = 0; i < currentWave.basicEnemy; i++)
         {
             newEnemyList.Add(basicEnemy);
         }

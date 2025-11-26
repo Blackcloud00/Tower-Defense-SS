@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player_Castle : MonoBehaviour
+public class Castle : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
