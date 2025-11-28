@@ -6,4 +6,12 @@ public class WaypointManager : MonoBehaviour
 {
     [SerializeField] private Transform[] waypoints;
     public Transform[] GetWaypoints() => waypoints;
+
+    //OOP
+
+    //Encapsulation
+
+    //Inheritance
+
+    //Polymorphism
 }

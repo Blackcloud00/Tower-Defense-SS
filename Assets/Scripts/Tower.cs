@@ -5,13 +5,22 @@ public class Tower : MonoBehaviour
 {
     public Transform currentEnemy;
 
-    [Header("Tower Setup")]
-    [SerializeField] private Transform towerHead;
-    [SerializeField] private float rotationSpeed;
+    [SerializeField] protected float attackCooldown = 1f;
+    protected float lastTimeAttacked;
 
-    [SerializeField] private float attackRange = 1.5f;
-    [SerializeField] private LayerMask whatIsEnemy;
-    private void Update()
+    [Header("Tower Setup")]
+    [SerializeField] protected Transform towerHead;
+    [SerializeField] protected float rotationSpeed = 10f;
+    private bool canRotate = true;
+
+    [SerializeField] protected float attackRange = 2.5f;
+    [SerializeField] protected LayerMask whatIsEnemy;
+
+    protected virtual void Awake()
+    {
+
+    }
+    protected virtual void Update()
     {
         if (currentEnemy == null)
         {
@@ -19,14 +28,31 @@ public class Tower : MonoBehaviour
             return;
         }
 
-        if(Vector3.Distance(currentEnemy.position, transform.position) > attackRange)
+        if (CanAttack())
+            Attack();
+
+        if (Vector3.Distance(currentEnemy.position, transform.position) > attackRange)
             currentEnemy = null;
 
         RotateTowardsEnemy();
     }
 
-    
-    private Transform FindRandomEnemyWithinRange()
+    protected virtual void Attack()
+    {
+        //Debug.Log("Tower Attacked! +" + Time.time );
+    }
+
+    protected bool CanAttack()
+    {
+        if (Time.time > lastTimeAttacked + attackCooldown)
+        {
+            lastTimeAttacked = Time.time;
+            return true;
+        }
+
+        return false;
+    }
+    protected Transform FindRandomEnemyWithinRange()
     {
         List<Transform> possibleTargets = new List<Transform>();
         Collider[] enemiesAround = Physics.OverlapSphere(transform.position, attackRange, whatIsEnemy);
@@ -43,10 +69,14 @@ public class Tower : MonoBehaviour
 
         return possibleTargets[randomIndex];
     }
-    
-    private void RotateTowardsEnemy()
+
+    public void EnableRotation(bool enable)
     {
-        if (currentEnemy == null)
+        canRotate = enable;
+    }
+    protected virtual void RotateTowardsEnemy()
+    {
+        if (currentEnemy == null || !canRotate)
             return;
 
         //Calculate the vector direction from the tower's head to the current enemy.
@@ -63,7 +93,11 @@ public class Tower : MonoBehaviour
         towerHead.rotation = Quaternion.Euler(rotation);
     }
 
-    private void OnDrawGizmos()
+    protected Vector3 DirectionToEnemy(Transform startPoint)
+    {
+        return (currentEnemy.position - startPoint.position).normalized;
+    }
+    protected virtual void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position, attackRange);
     }

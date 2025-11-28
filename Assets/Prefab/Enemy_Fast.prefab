@@ -311,7 +311,7 @@ GameObject:
   - component: {fileID: 4775857507628177788}
   - component: {fileID: 4617336783070381392}
   - component: {fileID: 6014142411352633603}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy_Fast
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -347,15 +347,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnSpeed: 10
-  waypoint:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  waypoints: []
 --- !u!195 &4775857507628177788
 NavMeshAgent:
   m_ObjectHideFlags: 0
