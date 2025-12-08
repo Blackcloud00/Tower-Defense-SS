@@ -378,6 +378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2b5661f6ec315f46b982b8029d70d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyType: 1
   centerPoint: {fileID: 533477390872272895}
   healthPoint: 6
   turnSpeed: 10

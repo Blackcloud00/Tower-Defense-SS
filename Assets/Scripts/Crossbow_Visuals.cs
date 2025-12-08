@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Crossbow_Visuals : MonoBehaviour
 {
-    private Tower_Crossbow myTower;
     private Enemy myEnemy;
 
     [SerializeField] private LineRenderer attackVisuals;
@@ -53,7 +52,6 @@ public class Crossbow_Visuals : MonoBehaviour
     [SerializeField] private LineRenderer[] lineRenderers;
     private void Awake()
     {
-        myTower = GetComponent<Tower_Crossbow>();
         material = new Material(meshRenderer.material);
         meshRenderer.material = material;
 
@@ -74,7 +72,11 @@ public class Crossbow_Visuals : MonoBehaviour
     {
         UpdateEmissionColor();
         UpdateStrings();
+        UpdateAttackVisualsIfNeeded();
+    }
 
+    private void UpdateAttackVisualsIfNeeded()
+    {
         if (attackVisuals.enabled && myEnemy != null)
             attackVisuals.SetPosition(1, myEnemy.GetCenterPoint());
     }
@@ -102,16 +104,16 @@ public class Crossbow_Visuals : MonoBehaviour
 
         material.SetColor("_EmissionColor", emissionColor);
     }
-    public void PlayAttackVFX(Vector3 startPoint, Vector3 endPoint)
+    public void PlayAttackVFX(Vector3 startPoint, Vector3 endPoint, Enemy newEnemy)
     {
-        StartCoroutine(VFXCoroutine(startPoint, endPoint));
+        StartCoroutine(VFXCoroutine(startPoint, endPoint, newEnemy));
     }
 
-    private IEnumerator VFXCoroutine(Vector3 startPoint, Vector3 endPoint)
+    private IEnumerator VFXCoroutine(Vector3 startPoint, Vector3 endPoint, Enemy newEnemy)
     {
         //myTower.EnableRotation(false);
 
-        myEnemy = myTower.currentEnemy;
+        myEnemy = newEnemy;
 
         attackVisuals.enabled = true;
 

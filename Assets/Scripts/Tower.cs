@@ -10,6 +10,7 @@ public class Tower : MonoBehaviour
     protected float lastTimeAttacked;
 
     [Header("Tower Setup")]
+    [SerializeField] protected EnemyType enemyPriorityType = EnemyType.None;
     [SerializeField] protected Transform towerHead;
     [SerializeField] protected float rotationSpeed = 10f;
     private bool canRotate = true;
@@ -17,15 +18,24 @@ public class Tower : MonoBehaviour
     [SerializeField] protected float attackRange = 2.5f;
     [SerializeField] protected LayerMask whatIsEnemy;
 
+    [Space]
+    [Tooltip("Enabling this allows tower to change target beetwen attacks")]
+    [SerializeField] private bool dynamicTargetChange;
+
+    private float targetCheckInterval = .1f;
+    private float lastTimeCheckedTarget;
+
     protected virtual void Awake()
     {
         EnableRotation(true);
     }
     protected virtual void Update()
     {
+        UpdateTargetIfNeeded();
+
         if (currentEnemy == null)
         {
-            currentEnemy = FindRandomEnemyWithinRange();
+            currentEnemy = FindEnemyWithinRange();
             return;
         }
 
@@ -36,6 +46,18 @@ public class Tower : MonoBehaviour
             currentEnemy = null;
 
         RotateTowardsEnemy();
+    }
+
+    private void UpdateTargetIfNeeded()
+    {
+        if (dynamicTargetChange == false)
+            return;
+
+        if(Time.time > lastTimeCheckedTarget + targetCheckInterval)
+        {
+            lastTimeCheckedTarget = Time.time;
+            currentEnemy = FindEnemyWithinRange();
+        }
     }
 
     protected virtual void Attack()
@@ -53,22 +75,31 @@ public class Tower : MonoBehaviour
 
         return false;
     }
-    protected Enemy FindRandomEnemyWithinRange()
+    protected Enemy FindEnemyWithinRange()
     {
+        List<Enemy> priorityTargets = new List<Enemy>();
         List<Enemy> possibleTargets = new List<Enemy>();
+
         Collider[] enemiesAround = Physics.OverlapSphere(transform.position, attackRange, whatIsEnemy);
 
         foreach (Collider enemy in enemiesAround)
         {
             Enemy newEnemy = enemy.GetComponent<Enemy>();
+            EnemyType newEnemyType = newEnemy.GetEnemyType();
 
-            possibleTargets.Add(newEnemy);
+            if (newEnemyType == enemyPriorityType)
+                priorityTargets.Add(newEnemy);
+            else
+                possibleTargets.Add(newEnemy);
         }
 
         Enemy newTarget = GetMostAdvancedEnemy(possibleTargets);
 
-        if (newTarget != null)
-            return newTarget;
+        if (priorityTargets.Count > 0)
+            return GetMostAdvancedEnemy(priorityTargets);
+
+        if(possibleTargets.Count > 0)
+            return GetMostAdvancedEnemy(possibleTargets);
 
         return null;
     }
