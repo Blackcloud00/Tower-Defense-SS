@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1044033908190559131}
   - component: {fileID: 2859438997714930805}
   - component: {fileID: 3752226478678972128}
+  - component: {fileID: 4203260216548283139}
   m_Layer: 6
   m_Name: tile_bridge_road
   m_TagString: Untagged
@@ -106,6 +107,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4203260216548283139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6957697935157608586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d5a5663c94229140957cb7f33c2cb0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8872703716381476656
 GameObject:
   m_ObjectHideFlags: 0

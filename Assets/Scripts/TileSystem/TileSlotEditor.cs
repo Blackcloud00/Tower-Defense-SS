@@ -1,5 +1,6 @@
 using UnityEditor;
 using UnityEngine;
+using static UnityEngine.UI.GridLayoutGroup;
 
 [CustomEditor(typeof(TileSlot)), CanEditMultipleObjects]
 
@@ -10,12 +11,69 @@ public class TileSlotEditor : Editor
         serializedObject.Update();
         base.OnInspectorGUI();
 
-        if(GUILayout.Button("My first button"))
+
+        float buttonWidth = (EditorGUIUtility.currentViewWidth - 25) / 2;
+
+        GUILayout.BeginHorizontal();
+
+        if (GUILayout.Button("Field", GUILayout.Width(buttonWidth)))
         {
-           foreach(var obj in targets)
+            GameObject newTile = FindFirstObjectByType<TileSetHolder>().tileField;
+
+            foreach( var targetTile in targets)
             {
-                ((TileSlot)obj).ButtonCheck();
+                ((TileSlot)targetTile).SwitchTile(newTile);
             }
         }
+
+        if (GUILayout.Button("Road", GUILayout.Width(buttonWidth)))
+        {
+            GameObject newTile = FindFirstObjectByType<TileSetHolder>().tileRoad;
+
+            foreach (var targetTile in targets)
+            {
+                ((TileSlot)targetTile).SwitchTile(newTile);
+            }
+        }
+
+        GUILayout.EndHorizontal();
+
+        GUILayout.BeginHorizontal();
+
+        if (GUILayout.Button("Sideway", GUILayout.Width(buttonWidth * 2)))
+        {
+            GameObject newTile = FindFirstObjectByType<TileSetHolder>().tileSideway;
+
+            foreach (var targetTile in targets)
+            {
+                ((TileSlot)targetTile).SwitchTile(newTile);
+            }
+        }
+
+        GUILayout.EndHorizontal();
+
+        GUILayout.BeginHorizontal();
+
+        if (GUILayout.Button("Inner Corner", GUILayout.Width(buttonWidth)))
+        {
+            GameObject newTile = FindFirstObjectByType<TileSetHolder>().tileInnerCorner;
+
+            foreach (var targetTile in targets)
+            {
+                ((TileSlot)targetTile).SwitchTile(newTile);
+            }
+        }
+
+        if (GUILayout.Button("Outer Corner", GUILayout.Width(buttonWidth)))
+        {
+            GameObject newTile = FindFirstObjectByType<TileSetHolder>().tileOuterCorner;
+
+            foreach (var targetTile in targets)
+            {
+                ((TileSlot)targetTile).SwitchTile(newTile);
+            }
+        }
+
+        GUILayout.EndHorizontal();
     }
 }

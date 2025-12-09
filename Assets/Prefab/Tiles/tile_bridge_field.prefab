@@ -117,6 +117,7 @@ GameObject:
   - component: {fileID: 8367071533001834606}
   - component: {fileID: 4887228473308510190}
   - component: {fileID: 415473817595815706}
+  - component: {fileID: 7219762875816117937}
   m_Layer: 0
   m_Name: tile_bridge_field
   m_TagString: Untagged
@@ -211,3 +212,15 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7219762875816117937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4232344515024614706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d5a5663c94229140957cb7f33c2cb0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

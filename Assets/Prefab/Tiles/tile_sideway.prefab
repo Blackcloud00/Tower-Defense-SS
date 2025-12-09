@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 5273492570142921173}
   - component: {fileID: 5891904813815739426}
   - component: {fileID: 1573284929377897560}
+  - component: {fileID: 7977789945069494287}
+  - component: {fileID: 2939150675464639920}
   m_Layer: 0
   m_Name: tile_sideway
   m_TagString: Untagged
@@ -84,6 +86,39 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7977789945069494287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 776386759227508868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d5a5663c94229140957cb7f33c2cb0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &2939150675464639920
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 776386759227508868}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.5, y: 1, z: 1}
+  m_Center: {x: 0.25, y: 0, z: 0}
 --- !u!1 &3584198860323050606
 GameObject:
   m_ObjectHideFlags: 0
